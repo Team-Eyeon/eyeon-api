@@ -57,7 +57,7 @@ export class UsersController {
     @Body() updateUserDto: UpdateUserDto,
     @Request() req: { user: UserWithoutPassword },
   ) {
-    if (req.user.id !== +id) throw new UnauthorizedException()
+    if (req.user.id !== id) throw new UnauthorizedException()
     return this.usersService.update(id, updateUserDto)
   }
 
@@ -73,7 +73,7 @@ export class UsersController {
     @Param('id', ParseIntPipe) id: number,
     @Request() req: { user: UserWithoutPassword },
   ) {
-    if (req.user.id !== +id) throw new UnauthorizedException()
+    if (req.user.id !== id) throw new UnauthorizedException()
     return this.usersService.remove(id)
   }
 }
