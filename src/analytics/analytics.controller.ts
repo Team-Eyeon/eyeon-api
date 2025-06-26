@@ -1,11 +1,20 @@
 import { Controller, Get } from '@nestjs/common'
 import { AnalyticsService } from './analytics.service'
+import { ApiTags, ApiResponse, ApiBearerAuth } from '@nestjs/swagger'
+import { GetAnalyticsResponseDto } from './dto/get-analytics-response.dto'
 
+@ApiTags('Analytics')
+@ApiBearerAuth()
 @Controller('analytics')
 export class AnalyticsController {
   constructor(private readonly analyticsService: AnalyticsService) {}
 
   @Get()
+  @ApiResponse({
+    status: 200,
+    description: 'Get analytics data.',
+    type: GetAnalyticsResponseDto,
+  })
   getAnalytics() {
     return this.analyticsService.getAnalytics()
   }
