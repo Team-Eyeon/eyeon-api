@@ -51,8 +51,11 @@ export class AlertsService {
   }
 
   getHighestThreatAlert() {
-    return this.alertRepository.findOne({
-      order: { threatScore: 'DESC' },
-    })
+    return this.alertRepository
+      .find({
+        order: { threatScore: 'DESC' },
+        take: 1,
+      })
+      .then((alerts) => alerts[0])
   }
 }
