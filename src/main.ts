@@ -1,12 +1,18 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { AllExceptionsFilter } from './common/filters'
-import { Logger, ValidationPipe } from '@nestjs/common'
+import {
+  Logger,
+  RequestMethod,
+  ValidationPipe,
+  VersioningType,
+} from '@nestjs/common'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap')
   const app = await NestFactory.create(AppModule)
+  app.enableCors()
 
   app.useGlobalFilters(new AllExceptionsFilter())
   app.useGlobalPipes(
@@ -16,6 +22,14 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   )
+
+  app.setGlobalPrefix('api', {
+    exclude: [{ path: 'health', method: RequestMethod.GET }],
+  })
+  app.enableVersioning({
+    type: VersioningType.URI,
+    defaultVersion: '1',
+  })
 
   const config = new DocumentBuilder()
     .setTitle('Job Portal API')
