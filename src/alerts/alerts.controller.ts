@@ -16,6 +16,7 @@ import {
   ApiResponse,
   ApiConsumes,
   ApiBearerAuth,
+  ApiOperation,
 } from '@nestjs/swagger'
 import { Alert } from './entities/alert.entity'
 
@@ -26,6 +27,7 @@ export class AlertsController {
   constructor(private readonly alertsService: AlertsService) {}
 
   @Post()
+  @ApiOperation({ summary: 'Create a new alert' })
   @ApiConsumes('application/json')
   @ApiResponse({
     status: 201,
@@ -37,12 +39,14 @@ export class AlertsController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'List all alerts' })
   @ApiResponse({ status: 200, description: 'List all alerts.', type: [Alert] })
   findAll() {
     return this.alertsService.findAll()
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Get an alert by ID' })
   @ApiResponse({ status: 200, description: 'Get an alert by ID.', type: Alert })
   @ApiResponse({ status: 404, description: 'Alert not found.' })
   findOne(@Param('id', ParseIntPipe) id: number) {
@@ -50,6 +54,7 @@ export class AlertsController {
   }
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Update an alert' })
   @ApiConsumes('application/json')
   @ApiResponse({ status: 200, description: 'Update an alert.', type: Alert })
   @ApiResponse({ status: 404, description: 'Alert not found.' })
@@ -61,6 +66,7 @@ export class AlertsController {
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Delete an alert' })
   @ApiResponse({ status: 200, description: 'Delete an alert.' })
   @ApiResponse({ status: 404, description: 'Alert not found.' })
   remove(@Param('id', ParseIntPipe) id: number) {
