@@ -31,10 +31,12 @@ export class AlertsService {
       if (existingCamera) {
         cameraId = existingCamera.id
       } else {
-        const newCamera = await this.cameraService.create({
+        const newCameraData = {
           name: cameraIdInput,
           location: 'unknown',
-        })
+        }
+        console.log('Alert creating a new camera', newCameraData)
+        const newCamera = await this.cameraService.create(newCameraData)
         cameraId = newCamera.id
       }
     } else {
