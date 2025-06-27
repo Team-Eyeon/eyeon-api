@@ -13,7 +13,6 @@ export class HistoryEventsController {
     description: 'The history events have been successfully retrieved.',
   })
   @ApiResponse({ status: 404, description: 'No history events found.' })
-  @ApiBearerAuth()
   @Get()
   findAll() {
     return this.historyEventsService.findAll()
@@ -25,7 +24,6 @@ export class HistoryEventsController {
     description: 'The history event has been successfully retrieved.',
   })
   @ApiResponse({ status: 404, description: 'History event not found.' })
-  @ApiBearerAuth()
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.historyEventsService.findOne(id)

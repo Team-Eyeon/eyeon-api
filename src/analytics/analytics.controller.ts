@@ -9,7 +9,6 @@ import {
 import { GetAnalyticsResponseDto } from './dto/get-analytics-response.dto'
 
 @ApiTags('Analytics')
-@ApiBearerAuth()
 @Controller('analytics')
 export class AnalyticsController {
   constructor(private readonly analyticsService: AnalyticsService) {}
