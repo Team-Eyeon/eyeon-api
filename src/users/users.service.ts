@@ -4,7 +4,7 @@ import { Repository } from 'typeorm'
 
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
-import { stripPassword, User } from './user.entity'
+import { stripPassword, User } from './entities/user.entity'
 
 import * as bcrypt from 'bcrypt'
 

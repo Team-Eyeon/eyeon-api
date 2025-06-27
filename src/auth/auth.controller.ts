@@ -1,5 +1,5 @@
 import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common'
-import { UserWithoutPassword } from 'src/users/user.entity'
+import { UserWithoutPassword } from 'src/users/entities/user.entity'
 import { LocalAuthGuard } from 'src/common/guards'
 import { AuthService } from './auth.service'
 import { SignupDto } from './dto/signup.dto'

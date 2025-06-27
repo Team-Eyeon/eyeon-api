@@ -6,8 +6,10 @@ import {
   Column,
   ManyToOne,
   PrimaryGeneratedColumn,
+  OneToMany,
 } from 'typeorm'
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
+import { HistoryEvent } from 'src/history-events/entities/history-event.entity'
 
 export enum AlertStatus {
   PENDING = 'pending',
@@ -96,4 +98,9 @@ export class Alert {
     cascade: ['insert', 'update', 'recover'],
   })
   camera: Camera
+
+  @OneToMany(() => HistoryEvent, (historyEvent) => historyEvent.alert, {
+    cascade: true,
+  })
+  historyEvents: HistoryEvent[]
 }

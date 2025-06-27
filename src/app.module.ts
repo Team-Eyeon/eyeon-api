@@ -8,6 +8,7 @@ import { DashboardModule } from './dashboard/dashboard.module'
 import { CamerasModule } from './cameras/cameras.module'
 import { AlertsModule } from './alerts/alerts.module'
 import { AnalyticsModule } from './analytics/analytics.module'
+import { HistoryEventsModule } from './history-events/history-events.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { AnalyticsModule } from './analytics/analytics.module'
     CamerasModule,
     AlertsModule,
     AnalyticsModule,
+    HistoryEventsModule,
   ],
   controllers: [AppController],
 })

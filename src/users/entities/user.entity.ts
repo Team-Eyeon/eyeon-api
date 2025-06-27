@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { HistoryEvent } from 'src/history-events/entities/history-event.entity'
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity()
 export class User {
@@ -10,6 +11,11 @@ export class User {
 
   @Column({ select: false })
   passwordHash: string
+
+  @OneToMany(() => HistoryEvent, (historyEvent) => historyEvent.user, {
+    cascade: true,
+  })
+  historyEvents: HistoryEvent[]
 }
 
 export type UserWithoutPassword = Omit<User, 'passwordHash'>

@@ -1,6 +1,7 @@
 import { Alert } from 'src/alerts/entities/alert.entity'
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import { ApiProperty } from '@nestjs/swagger'
+import { HistoryEvent } from 'src/history-events/entities/history-event.entity'
 
 @Entity()
 export class Camera {
@@ -32,4 +33,9 @@ export class Camera {
   })
   @OneToMany(() => Alert, (alert) => alert.camera, { cascade: true })
   alerts: Alert[]
+
+  @OneToMany(() => HistoryEvent, (historyEvent) => historyEvent.camera, {
+    cascade: true,
+  })
+  historyEvents: HistoryEvent[]
 }

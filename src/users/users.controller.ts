@@ -13,7 +13,7 @@ import {
 import { UsersService } from './users.service'
 import { UpdateUserDto } from './dto/update-user.dto'
 import { JwtAuthGuard } from 'src/common/guards'
-import { UserWithoutPassword } from './user.entity'
+import { UserWithoutPassword } from './entities/user.entity'
 import {
   ApiTags,
   ApiResponse,
