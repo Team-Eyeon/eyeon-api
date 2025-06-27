@@ -74,10 +74,7 @@ export class Alert {
     description: 'Types of the alert',
     isArray: true,
   })
-  @Column({
-    array: true,
-    default: [],
-  })
+  @Column('text', { array: true, default: [] })
   types: string[]
 
   @ApiPropertyOptional({

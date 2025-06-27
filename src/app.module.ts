@@ -22,7 +22,7 @@ import { AiSocketModule } from './ai-socket'
         port: configService.get<number>('DB_PORT') || 5432,
         username: configService.get<string>('DB_USERNAME') || 'postgres',
         password: configService.getOrThrow<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_NAME') || 'eyeon_api',
+        database: configService.getOrThrow<string>('DB_NAME') || 'eyeon_api',
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: configService.get<boolean>('DB_SYNC') || false,
       }),
