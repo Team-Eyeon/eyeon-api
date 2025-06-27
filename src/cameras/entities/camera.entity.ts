@@ -13,8 +13,8 @@ export class Camera {
     description: 'Name of the camera',
     example: 'Front Gate Camera',
   })
-  @Column()
-  name: string
+  @Column({ nullable: true })
+  name?: string
 
   @ApiProperty({
     description: 'Location of the camera',
