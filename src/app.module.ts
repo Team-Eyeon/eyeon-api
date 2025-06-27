@@ -8,7 +8,8 @@ import { DashboardModule } from './dashboard/dashboard.module'
 import { CamerasModule } from './cameras/cameras.module'
 import { AlertsModule } from './alerts/alerts.module'
 import { AnalyticsModule } from './analytics/analytics.module'
-import { HistoryEventsModule } from './history-events/history-events.module';
+import { HistoryEventsModule } from './history-events/history-events.module'
+import { AiSocketModule } from './ai-socket'
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { HistoryEventsModule } from './history-events/history-events.module';
     AlertsModule,
     AnalyticsModule,
     HistoryEventsModule,
+    // AiSocketModule,
   ],
   controllers: [AppController],
 })

@@ -4,7 +4,6 @@ import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger'
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard'
 
 @Controller('history-events')
-@UseGuards(JwtAuthGuard)
 export class HistoryEventsController {
   constructor(private readonly historyEventsService: HistoryEventsService) {}
 

@@ -21,7 +21,6 @@ import {
 import { Alert } from './entities/alert.entity'
 
 @ApiTags('Alerts')
-@ApiBearerAuth()
 @Controller('alerts')
 export class AlertsController {
   constructor(private readonly alertsService: AlertsService) {}

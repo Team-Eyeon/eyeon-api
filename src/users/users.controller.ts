@@ -24,7 +24,6 @@ import {
 import { UserResponseDto } from '../auth/dto/auth-response.dto'
 
 @ApiTags('Users')
-@ApiBearerAuth()
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -52,7 +51,6 @@ export class UsersController {
     return this.usersService.findOne(id)
   }
 
-  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   @ApiOperation({ summary: 'Update a user' })
   @ApiConsumes('application/json')
@@ -71,7 +69,6 @@ export class UsersController {
     return this.usersService.update(id, updateUserDto)
   }
 
-  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a user' })
   @ApiResponse({

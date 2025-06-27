@@ -72,16 +72,13 @@ export class Alert {
 
   @ApiProperty({
     description: 'Types of the alert',
-    enum: AlertType,
     isArray: true,
   })
   @Column({
-    type: 'enum',
-    enum: AlertType,
     array: true,
     default: [],
   })
-  types: AlertType[]
+  types: string[]
 
   @ApiPropertyOptional({
     description: 'Screenshot URL',

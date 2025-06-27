@@ -21,7 +21,6 @@ import {
 import { Camera } from './entities/camera.entity'
 
 @ApiTags('Cameras')
-@ApiBearerAuth()
 @Controller('cameras')
 export class CamerasController {
   constructor(private readonly camerasService: CamerasService) {}

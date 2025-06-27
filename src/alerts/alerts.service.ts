@@ -4,20 +4,43 @@ import { UpdateAlertDto } from './dto/update-alert.dto'
 import { Alert, AlertStatus } from './entities/alert.entity'
 import { Repository } from 'typeorm'
 import { InjectRepository } from '@nestjs/typeorm'
+import { CamerasService } from 'src/cameras/cameras.service'
 
 @Injectable()
 export class AlertsService {
   constructor(
     @InjectRepository(Alert)
     private readonly alertRepository: Repository<Alert>,
+    private readonly cameraService: CamerasService,
   ) {}
 
   async create(createAlertDto: CreateAlertDto) {
-    const { cameraId, ...rest } = createAlertDto
+    const { cameraId: cameraIdInput, ...rest } = createAlertDto
+    const cameraId = await this.generateCameraId(cameraIdInput)
+
     return this.alertRepository.save({
       camera: { id: cameraId },
       ...rest,
     })
+  }
+
+  private async generateCameraId(cameraIdInput: string | number) {
+    let cameraId: number
+    if (typeof cameraIdInput === 'string') {
+      const existingCamera = await this.cameraService.findByName(cameraIdInput)
+      if (existingCamera) {
+        cameraId = existingCamera.id
+      } else {
+        const newCamera = await this.cameraService.create({
+          name: cameraIdInput,
+          location: 'unknown',
+        })
+        cameraId = newCamera.id
+      }
+    } else {
+      cameraId = cameraIdInput
+    }
+    return cameraId
   }
 
   findAll() {
@@ -28,10 +51,12 @@ export class AlertsService {
     return this.alertRepository.findOne({ where: { id } })
   }
 
-  update(id: number, updateAlertDto: UpdateAlertDto) {
-    const { cameraId, ...rest } = updateAlertDto
+  async update(id: number, updateAlertDto: UpdateAlertDto) {
+    const { cameraId: cameraIdInput, ...rest } = updateAlertDto
+    const cameraId =
+      cameraIdInput && (await this.generateCameraId(cameraIdInput))
     return this.alertRepository.update(id, {
-      camera: { id: cameraId },
+      camera: cameraId ? { id: cameraId } : undefined,
       ...rest,
     })
   }

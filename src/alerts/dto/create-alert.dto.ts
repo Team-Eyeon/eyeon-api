@@ -1,13 +1,4 @@
-import {
-  IsArray,
-  IsEnum,
-  IsInt,
-  IsNumber,
-  IsOptional,
-  IsString,
-  Max,
-  Min,
-} from 'class-validator'
+import { IsArray, IsInt, IsOptional, IsString, Max, Min } from 'class-validator'
 import { AlertType } from '../entities/alert.entity'
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 
@@ -16,8 +7,7 @@ export class CreateAlertDto {
     description: 'ID of the camera associated with the alert',
     example: 1,
   })
-  @IsNumber()
-  cameraId: number
+  cameraId: number | string
 
   @ApiPropertyOptional({
     description: 'Alert message',
@@ -25,7 +15,7 @@ export class CreateAlertDto {
   })
   @IsOptional()
   @IsString()
-  message: string
+  message?: string
 
   @ApiPropertyOptional({
     description: 'Types of the alert',
@@ -34,8 +24,7 @@ export class CreateAlertDto {
   })
   @IsOptional()
   @IsArray()
-  @IsEnum(AlertType, { each: true })
-  types: AlertType[]
+  types?: string[]
 
   @ApiPropertyOptional({
     description: 'Screenshot URL',

@@ -35,4 +35,8 @@ export class CamerasService {
   getNumberOfActiveCameras() {
     return this.cameraRepository.count({ where: { isActive: true } })
   }
+
+  findByName(name: string) {
+    return this.cameraRepository.findOne({ where: { name } })
+  }
 }
