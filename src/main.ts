@@ -32,8 +32,8 @@ async function bootstrap() {
   })
 
   const config = new DocumentBuilder()
-    .setTitle('Job Portal API')
-    .setDescription('API for the Job Portal')
+    .setTitle('Eyeon API')
+    .setDescription('API for Team Eyeon')
     .setVersion('1.0')
     .build()
   const documentFactory = () => SwaggerModule.createDocument(app, config)
