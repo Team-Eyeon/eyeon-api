@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common'
 import { AppController } from './app.controller'
-import { AppService } from './app.service'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { AuthModule } from './auth/auth.module'
 import { UsersModule } from './users/users.module'
 import { DashboardModule } from './dashboard/dashboard.module'
-import { CamerasModule } from './cameras/cameras.module';
-import { AlertsModule } from './alerts/alerts.module';
-import { AnalyticsModule } from './analytics/analytics.module';
+import { CamerasModule } from './cameras/cameras.module'
+import { AlertsModule } from './alerts/alerts.module'
+import { AnalyticsModule } from './analytics/analytics.module'
 
 @Module({
   imports: [
@@ -34,6 +33,5 @@ import { AnalyticsModule } from './analytics/analytics.module';
     AnalyticsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
